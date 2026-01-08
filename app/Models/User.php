@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Journal::class, 'teacher_id');
     }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'teacher_id');
+    }
 }

@@ -13,10 +13,13 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class QuranLearningResource extends Resource
 {
     protected static ?string $model = QuranLearning::class;
+    protected static string | UnitEnum | null $navigationGroup = 'Pembelajaran';
+    protected static ?string $navigationLabel = "Pembelajaran Qur'an";
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

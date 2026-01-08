@@ -13,10 +13,13 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class JournalResource extends Resource
 {
     protected static ?string $model = Journal::class;
+    protected static string | UnitEnum | null $navigationGroup = 'Pembelajaran';
+    protected static ?string $navigationLabel = 'Data Pembelajaran';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

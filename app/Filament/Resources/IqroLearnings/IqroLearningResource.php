@@ -15,10 +15,13 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class IqroLearningResource extends Resource
 {
     protected static ?string $model = IqroLearning::class;
+    protected static string | UnitEnum | null $navigationGroup = 'Pembelajaran';
+    protected static ?string $navigationLabel = 'Pembelajaran Iqro';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
