@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Finances\Tables;
+namespace App\Filament\Student\Resources\QuranLearnings\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,31 +8,42 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 
-class FinancesTable
+class QuranLearningsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(function (Builder $query) {
-                $query->with('user', 'type');
-                if (Auth::user()?->role !== 'admin') {
-                    $query->where('user_id', Auth::id());
-                }
-            })
             ->columns([
-                TextColumn::make('user.name')
-                    ->sortable(),
-                TextColumn::make('type.name')
-                    ->sortable(),
-                TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('total')
+                TextColumn::make('teacher_id')
                     ->numeric()
-                    ->prefix('RP ')
                     ->sortable(),
+                TextColumn::make('student_id')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('journals_id')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('quran_start_id')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('start_ayah')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('start_page')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('quran_end_id')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('end_ayah')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('end_page')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('status')
+                    ->badge(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

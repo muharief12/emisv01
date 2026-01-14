@@ -25,10 +25,11 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id('admin')
-            ->path('admin')
+            ->id('dashboard')
+            ->path('dashboard')
             ->login()
             ->registration()
+            ->profile()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -52,6 +53,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+
             ])
             ->authMiddleware([
                 Authenticate::class,
