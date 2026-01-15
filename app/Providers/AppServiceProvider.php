@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\EventPayment;
 use App\Observers\EventPaymentObserver;
+use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
         }
 
         EventPayment::observe(EventPaymentObserver::class);
+        FilamentView::registerRenderHook(
+            'panels::body.end',
+            fn() => view('filament.global-loading')
+        );
     }
 }
