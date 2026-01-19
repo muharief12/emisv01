@@ -23,7 +23,7 @@ class FinanceResource extends Resource
     protected static string | UnitEnum | null $navigationGroup = 'Keuangan';
     protected static ?string $navigationLabel = 'Data Keuangan';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentCurrencyDollar;
 
     public static function form(Schema $schema): Schema
     {

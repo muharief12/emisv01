@@ -6,4 +6,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/admin/login');
+Route::redirect('/', '/dashboard/login');

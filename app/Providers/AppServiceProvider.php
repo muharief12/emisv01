@@ -23,14 +23,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (config('app.key') === 'local') {
+        if (config('app.env') === 'local') {
             URL::forceScheme('https');
         }
 
         EventPayment::observe(EventPaymentObserver::class);
-        FilamentView::registerRenderHook(
-            'panels::body.end',
-            fn() => view('filament.global-loading')
-        );
+        // FilamentView::registerRenderHook(
+        //     'panels::body.end',
+        //     fn() => view('filament.global-loading')
+        // );
     }
 }

@@ -25,7 +25,7 @@ class FinanceTypeResource extends Resource
     protected static string | UnitEnum | null $navigationGroup = 'Keuangan';
     protected static ?string $navigationLabel = 'Jenis Keuangan';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBanknotes;
 
     public static function form(Schema $schema): Schema
     {
