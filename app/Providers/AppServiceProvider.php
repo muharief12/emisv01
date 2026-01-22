@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\EventPayment;
+use App\Models\QuranLearning;
 use App\Observers\EventPaymentObserver;
+use App\Observers\QuaranLearningObserver;
 use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         EventPayment::observe(EventPaymentObserver::class);
+        QuranLearning::observe(QuaranLearningObserver::class);
         // FilamentView::registerRenderHook(
         //     'panels::body.end',
         //     fn() => view('filament.global-loading')

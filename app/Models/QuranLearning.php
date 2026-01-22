@@ -21,11 +21,15 @@ class QuranLearning extends Model
 
     public function journal()
     {
-        return $this->belongsTo(Journal::class, 'journal_id', 'id');
+        return $this->belongsTo(Journal::class, 'journals_id', 'id');
     }
 
-    public function quran()
+    public function quranStart()
     {
         return $this->belongsTo(Quran::class, 'quran_start_id', 'id');
+    }
+    public function quranEnd()
+    {
+        return $this->belongsTo(Quran::class, 'quran_end_id', 'id');
     }
 }
