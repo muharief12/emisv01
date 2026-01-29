@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class IqroLearning extends Model
 {
-    protected $table = 'quran_learnings';
+    protected $table = 'iqro_learnings';
     protected $guarded = ['id'];
 
     public function student()
@@ -21,7 +21,7 @@ class IqroLearning extends Model
 
     public function journal()
     {
-        return $this->belongsTo(Journal::class, 'journal_id', 'id');
+        return $this->belongsTo(Journal::class, 'journals_id', 'id');
     }
 
     public function quran()

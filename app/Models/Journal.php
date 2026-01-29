@@ -13,4 +13,14 @@ class Journal extends Model
     {
         return $this->belongsTo(User::class, 'teacher_id', 'id');
     }
+
+    public function iqros()
+    {
+        return $this->hasMany(IqroLearning::class, 'journals_id');
+    }
+
+    public function qurans()
+    {
+        return $this->hasMany(QuranLearning::class, 'journals_id');
+    }
 }
