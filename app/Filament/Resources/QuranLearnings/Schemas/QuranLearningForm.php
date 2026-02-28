@@ -26,6 +26,7 @@ class QuranLearningForm
                     ->columns(3)
                     ->schema([
                         Select::make('teacher_id')
+                            ->label('Guru')
                             ->required()
                             ->options([
                                 Auth::id() => Auth::user()->name,
@@ -34,9 +35,11 @@ class QuranLearningForm
                             ->preload()
                             ->searchable(),
                         Select::make('student_id')
+                            ->label('Santri/wati')
                             ->relationship('student', 'name')
                             ->required(),
                         Select::make('journals_id')
+                            ->label('Journal Pembelajaran')
                             ->relationship('journal', 'time')
                             ->default(fn() => Journal::latest()->value('id'))
                             ->required(),
@@ -45,6 +48,7 @@ class QuranLearningForm
                     ->columns(3)
                     ->schema([
                         Select::make('quran_start_id')
+                            ->label("Qur'an mulai")
                             ->required()
                             ->options(
                                 Quran::pluck('transliteration', 'id')
@@ -52,6 +56,7 @@ class QuranLearningForm
                             ->reactive()
                             ->afterStateUpdated(fn(Set $set) => $set('start_ayah', null)),
                         Select::make('start_ayah')
+                            ->label('Mulai Ayat')
                             ->required()
                             ->reactive()
                             ->live()
@@ -121,7 +126,7 @@ class QuranLearningForm
                                 $set('start_page', $page);
                             }),
                         TextInput::make('start_page')
-                            // ->label('Halaman Awal Setoran')
+                            ->label('Halaman Awal Penilaian')
                             ->required()
                             ->numeric()
                             ->dehydrated()
@@ -131,6 +136,7 @@ class QuranLearningForm
                     ->columns(3)
                     ->schema([
                         Select::make('quran_end_id')
+                            ->label("Qur'an akhir")
                             ->required()
                             ->options(
                                 Quran::pluck('transliteration', 'id')
@@ -206,7 +212,7 @@ class QuranLearningForm
                                 $set('end_page', $page);
                             }),
                         TextInput::make('end_page')
-                            // ->label('Halaman Awal Setoran')
+                            ->label('Halaman Akhir Penilaian')
                             ->required()
                             ->dehydrated()
                             ->numeric()
@@ -216,6 +222,7 @@ class QuranLearningForm
                     ->columns(2)
                     ->schema([
                         Textarea::make('note')
+                            ->label('Catatan Penilaian')
                             ->default("Sudah lancar tingkatkan muroja'ah dan bisa lanjut ke halaman berikutnya"),
                         Select::make('status')
                             ->options(['good' => 'Good', 'retake' => 'Retake'])

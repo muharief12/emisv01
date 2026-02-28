@@ -19,9 +19,7 @@ class StatsOverview extends StatsOverviewWidget
             $q->where('type', 'expense');
         })->sum('total');
         $totalFin = $incomes - $expenses;
-        $tabungan = Finance::whereHas('type', function ($q) {
-            $q->where('name', 'Tabungan');
-        })->sum('total');
+        $tabungan = User::sum('saving');
         $infaq = Finance::whereHas('type', function ($q) {
             $q->where('name', 'Infaq');
         })->sum('total');

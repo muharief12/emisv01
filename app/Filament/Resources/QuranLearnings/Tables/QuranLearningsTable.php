@@ -53,7 +53,15 @@ class QuranLearningsTable
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('status')
-                    ->badge(),
+                    ->badge()
+                    ->formatStateUsing(fn($state) => match ($state) {
+                        'good' => 'Lancar',
+                        'retake' => 'Mengulang'
+                    })
+                    ->color(fn($state) => match ($state) {
+                        'good' => 'success',
+                        'retake' => 'danger',
+                    }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

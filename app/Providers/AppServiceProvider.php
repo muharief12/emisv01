@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\EventPayment;
+use App\Models\Finance;
 use App\Models\QuranLearning;
 use App\Observers\EventPaymentObserver;
 use App\Observers\QuaranLearningObserver;
+use App\Observers\SavingObserver;
 use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -25,12 +27,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (config('app.env') === 'local') {
-            URL::forceScheme('https');
-        }
+        // if (config('app.env') === 'local') {
+        //     URL::forceScheme('https');
+        // }
 
         EventPayment::observe(EventPaymentObserver::class);
         QuranLearning::observe(QuaranLearningObserver::class);
+        Finance::observe(SavingObserver::class);
         // FilamentView::registerRenderHook(
         //     'panels::body.end',
         //     fn() => view('filament.global-loading')
