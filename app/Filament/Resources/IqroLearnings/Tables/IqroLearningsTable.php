@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources\IqroLearnings\Tables;
 
+use Carbon\Carbon;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 class IqroLearningsTable
 {
@@ -15,35 +17,39 @@ class IqroLearningsTable
     {
         return $table
             ->columns([
-                TextColumn::make('teacher_id')
+                TextColumn::make('teacher.name')
+                    ->label('Guru')
+                    ->sortable(),
+                TextColumn::make('student.name')
+                    ->label('Santri/wati')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('student_id')
-                    ->numeric()
+                TextColumn::make('journal.time')
+                    ->label('Jurnal Pembelajaran')
+                    ->formatStateUsing(function ($state) {
+                        Carbon::setLocale('id');
+                        return Carbon::parse($state)->translatedFormat('l, d F Y');
+                    })
                     ->sortable(),
-                TextColumn::make('journals_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('quran_start_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('start_ayah')
+                TextColumn::make('level')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('start_page')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('quran_end_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('end_ayah')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('end_page')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('status')
-                    ->badge(),
+                    ->badge()
+                    ->formatStateUsing(fn($state) => match ($state) {
+                        'good' => 'Lancar',
+                        'retake' => 'Mengulang'
+                    })
+                    ->color(fn($state) => match ($state) {
+                        'good' => 'success',
+                        'retake' => 'danger'
+                    }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

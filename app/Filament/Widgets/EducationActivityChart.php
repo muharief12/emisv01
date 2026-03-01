@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Journal;
+use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
 
 class EducationActivityChart extends ChartWidget
@@ -24,14 +25,14 @@ class EducationActivityChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Santri/wati',
+                    'label' => "Iqro'",
                     'data' => $journals->map(fn($journal) => $journal->iqros->count())->values()->toArray(),
                     'backgroundColor' => [
                         '#3B82F6', // Blue - Iqro
                     ],
                 ],
                 [
-                    'label' => 'Santri/wati',
+                    'label' => "Qur'an",
                     'data' => $journals->map(fn($journal) => $journal->qurans->count())->values()->toArray(),
                     'backgroundColor' => [
                         '#F59E0B', // Amber - Quran
@@ -40,7 +41,8 @@ class EducationActivityChart extends ChartWidget
             ],
             'labels' => $journals->map(
                 fn($journal) =>
-                'Pertemuan ' . $journal->id
+                Carbon::parse($journal->time)->translatedFormat('l, d F Y')
+
             )->values()->toArray(),
         ];
     }
