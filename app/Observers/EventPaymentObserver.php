@@ -35,7 +35,7 @@ class EventPaymentObserver
     public function created(EventPayment $payment): void
     {
         $this->updateEventTotal($payment);
-        $this->sendWhatsappNotification($payment, 'created');
+        // $this->sendWhatsappNotification($payment, 'created');
     }
 
     /**
@@ -44,7 +44,7 @@ class EventPaymentObserver
     public function updated(EventPayment $payment): void
     {
         $this->updateEventTotal($payment);
-        $this->sendWhatsappNotification($payment, 'updated');
+        // $this->sendWhatsappNotification($payment, 'updated');
     }
 
     /**
@@ -53,7 +53,7 @@ class EventPaymentObserver
     public function deleted(EventPayment $payment): void
     {
         $this->updateEventTotal($payment);
-        $this->sendWhatsappNotification($payment, 'deleted');
+        // $this->sendWhatsappNotification($payment, 'deleted');
     }
 
     /**

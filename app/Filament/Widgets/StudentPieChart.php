@@ -3,10 +3,12 @@
 namespace App\Filament\Widgets;
 
 use App\Models\User;
+use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 use Filament\Widgets\ChartWidget;
 
 class StudentPieChart extends ChartWidget
 {
+    use HasWidgetShield;
     protected ?string $heading = 'Santri/wati berdasarkan Level';
 
     protected function getData(): array

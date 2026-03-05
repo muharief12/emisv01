@@ -3,11 +3,14 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Journal;
+use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
 
 class EducationActivityChart extends ChartWidget
 {
+    use HasWidgetShield;
+
     protected ?string $heading = 'Sebaran Pembelajaran';
     protected static ?int $sort = 3;
 

@@ -23,7 +23,21 @@ class UsersTable
                 TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('role')
+                TextColumn::make('roles.name')
+                    // ->badge(fn($state) => match ($state) {
+                    //     'super_admin' => 'super admin',
+                    //     'Guru' => 'guru',
+                    //     'Bendahara' => 'bendahara',
+                    //     'Santri/wati' => 'santri/wati'
+                    // })
+                    // ->color(fn($state) => match ($state) {
+                    //     'super_admin' => 'grey',
+                    //     'Guru' => 'info',
+                    //     'Bendahara' => 'warning',
+                    //     'Santri/wati' => 'amber'
+                    // })
+                    ->badge()
+                    ->color('amber')
                     ->searchable(),
                 TextColumn::make('saving')
                     ->numeric()

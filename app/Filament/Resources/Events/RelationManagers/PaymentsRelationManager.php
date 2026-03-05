@@ -16,6 +16,8 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentsRelationManager extends RelationManager
 {
@@ -42,18 +44,25 @@ class PaymentsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+                if (Auth::user()->hasRole('Santri/wati')) {
+                    $query->where('student_id', Auth::id());
+                }
+            })
             ->recordTitleAttribute('student.name')
             ->columns([
                 TextColumn::make('student.name')
-                    ->numeric()
+                    ->label('Nama')
                     ->sortable(),
                 TextColumn::make('cost')
+                    ->label('Biaya')
                     ->prefix('Rp')
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label('dibuat')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
+                // ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
@@ -78,4 +87,14 @@ class PaymentsRelationManager extends RelationManager
                 ]),
             ]);
     }
+
+    // public function mount(): void
+    // {
+    //     if (
+    //         Auth::user()->hasRole('santri/wati') &&
+    //         $this->ownerRecord->user_id !== Auth::id()
+    //     ) {
+    //         abort(403);
+    //     }
+    // }
 }

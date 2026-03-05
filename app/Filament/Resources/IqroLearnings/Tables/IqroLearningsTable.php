@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\IqroLearnings\Tables;
 
+use App\Models\IqroLearning;
 use Carbon\Carbon;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,6 +10,8 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 class IqroLearningsTable
@@ -16,6 +19,11 @@ class IqroLearningsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+                if (Auth::user()->hasRole('Santri/wati')) {
+                    $query->where('student_id', Auth::id());
+                }
+            })
             ->columns([
                 TextColumn::make('teacher.name')
                     ->label('Guru')

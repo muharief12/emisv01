@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 use UnitEnum;
 
 class IqroLearningResource extends Resource
@@ -55,5 +56,23 @@ class IqroLearningResource extends Resource
             'view' => ViewIqroLearning::route('/{record}'),
             'edit' => EditIqroLearning::route('/{record}/edit'),
         ];
+    }
+
+    public static function canView($record): bool
+    {
+        if (Auth::user()->hasRole('Santri/wati') && $record->student_id !== Auth::id()) {
+            abort(403);
+        }
+
+        return true;
+    }
+
+    public static function canEdit($record): bool
+    {
+        if (Auth::user()->hasRole('Santri/wati') && $record->student_id !== Auth::id()) {
+            abort(403);
+        }
+
+        return true;
     }
 }

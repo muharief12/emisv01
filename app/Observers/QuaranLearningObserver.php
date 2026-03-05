@@ -21,7 +21,7 @@ class QuaranLearningObserver
      */
     public function created(QuranLearning $quranLearning): void
     {
-        $this->sendWhatsappNotification($quranLearning, 'created');
+        // $this->sendWhatsappNotification($quranLearning, 'created');
     }
 
     /**
@@ -29,7 +29,7 @@ class QuaranLearningObserver
      */
     public function updated(QuranLearning $quranLearning): void
     {
-        $this->sendWhatsappNotification($quranLearning, 'updated');
+        // $this->sendWhatsappNotification($quranLearning, 'updated');
     }
 
     /**
@@ -37,7 +37,7 @@ class QuaranLearningObserver
      */
     public function deleted(QuranLearning $quranLearning): void
     {
-        $this->sendWhatsappNotification($quranLearning, 'deleted');
+        // $this->sendWhatsappNotification($quranLearning, 'deleted');
     }
 
     /**
