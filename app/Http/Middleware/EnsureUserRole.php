@@ -21,7 +21,8 @@ class EnsureUserRole
             abort(403);
         }
 
-        if (! in_array(Auth::user()->status, $roles)) {
+        // if (! in_array(Auth::user()->status, $roles)) {
+        if (! Auth::user()->hasRole($roles)) {
             abort(403);
         }
 
