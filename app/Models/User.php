@@ -57,4 +57,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Event::class, 'teacher_id');
     }
+
+    public function iqroLearnings()
+    {
+        return $this->hasMany(IqroLearning::class, 'student_id');
+    }
+
+    public function quranLearnings()
+    {
+        return $this->hasMany(QuranLearning::class, 'student_id');
+    }
 }
